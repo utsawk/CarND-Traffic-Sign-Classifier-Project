@@ -17,14 +17,15 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./writeup_images/Equalization.png "Equalization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./writeup_images/histogram_training.png "Histogram of training data"
+[image2]: ./writeup_images/histogram_valid.png "Histogram of validation data"
+[image3]: ./writeup_images/mean_std.png "Mean and standard deviation of data"
+[image4]: ./examples/random_noise.jpg "Random Noise"
+[image5]: ./examples/placeholder.png "Traffic Sign 1"
+[image6]: ./examples/placeholder.png "Traffic Sign 2"
+[image8]: ./examples/placeholder.png "Traffic Sign 3"
+[image9]: ./examples/placeholder.png "Traffic Sign 4"
+[image10]: ./examples/placeholder.png "Traffic Sign 5"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -50,15 +51,19 @@ I used the shape() property to get the shapes of of training, validation and tes
 
 #### 2. Include an exploratory visualization of the dataset.
 
-I plot the normalized histogram of the both the training and validation dataset. They both exhibit similar 
+I plot the normalized histogram of the both the training and validation dataset -  it can be seen that both of the datasets have similar distributions. It can also be seen that some image categories are under-represented like Class # 0 (Speed limit 20 km/hr), Class # 19 (dangerous curve to the left), etc. 
 
-![alt text][image1]
+![Histogram of training data][image1]
+![Histogram of validation data][image2]
+
+I also plot the mean and standard deviation image. It can be seen from these images that the center of the figure carries the traffic sign. The standard deviation is interesting because most of the image is dark - I would have expected the region close to the borders of the image to be varying in pixel intensity because of the varied background of traffic sign images. However, all the images are cropped with traffic sign occupying the majority of the image leading to low standard deviation throughout the 32*32 image.
+![Mean and standard deviation of images][image3]
 
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-I tried two image equalization techniques - histogram equalization and CLAHE (Contrast Limited Adaptive Histogram Equalization). Both these techniques improve the contrast in the image. 
+I tried two image equalization techniques - histogram equalization and CLAHE (Contrast Limited Adaptive Histogram Equalization). Both these techniques improve the contrast in the image as shown in Fig. below.
 
 ![alt text][image2]
 
