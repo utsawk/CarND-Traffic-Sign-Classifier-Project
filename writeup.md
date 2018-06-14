@@ -23,19 +23,15 @@ The goals / steps of this project are the following:
 [image4]: ./writeup_images/Equalization.png "Equalization techniques considered"
 [image5]: ./writeup_images/Problem_1.png "Children crossing"
 [image6]: ./writeup_images/Problem_2.png "Bumpy road"
-[image7]: ./images_from_internet/11_Right-of-way.jpeg "Traffic Sign 1"
-[image8]: ./images_from_internet/22_bumpy_road.jpg "Traffic Sign 2"
-[image9]: ./images_from_internet/23_slippery_road.jpg "Traffic Sign 3"
-[image10]: ./images_from_internet/25_roadwork.jpg "Traffic Sign 4"
-[image11]: ./images_from_internet/28_children_crossing.jpeg "Traffic Sign 5"
-[image12]: ./images_from_internet/3_speed_limit_60.jpg "Traffic Sign 6"
-[image13]: ./writeup_images/softmax1.png "Softmax 1"
-[image14]: ./writeup_images/softmax2.png "Softmax 2"
-[image15]: ./writeup_images/softmax3.png "Softmax 3"
-[image16]: ./writeup_images/softmax4.png "Softmax 4"
-[image17]: ./writeup_images/softmax5.png "Softmax 5"
-[image18]: ./writeup_images/softmax6.png "Softmax 6"
-[image19]: ./writeup_images/augmentation.png "Augmentation"
+[image7]: ./writeup_images/internet_images.png "Internet images"
+[image8]: ./writeup_images/softmax1.png "Softmax 1"
+[image9]: ./writeup_images/softmax2.png "Softmax 2"
+[image10]: ./writeup_images/softmax3.png "Softmax 3"
+[image11]: ./writeup_images/softmax4.png "Softmax 4"
+[image12]: ./writeup_images/softmax5.png "Softmax 5"
+[image13]: ./writeup_images/softmax6.png "Softmax 6"
+[image14]: ./writeup_images/augmentation.png "Augmentation"
+[image15]: ./writeup_images/arch.png "Architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -81,6 +77,7 @@ Inspired by [1], I tried two image equalization techniques - histogram equalizat
 I decided to use CLAHE (on grayscale images) for data preprocessing here because histogram equalization does not work well when there are large intensity variations in an image. This is easier to demonstrate on larger images but a couple of examples where histogram equalization does not work well are shown below (as before, figure shows original image, histogram equalized image and CLAHE filtered image from left to right).
 
 ![Children crossing][image5]
+
 ![Bumpy road][image6]
 
 Additionally, I tried a few data augmentation techniques and ended up using the following augmentations:
@@ -90,7 +87,7 @@ Additionally, I tried a few data augmentation techniques and ended up using the 
 
 The figure below shows the original RGB image and four processed images used for training (CLAHE filtered grayscale image, scaled and roated, randomly perturbed, and motion blurred)
 
-![augmentation][image19]
+![augmentation][image14]
 
 Note that the augmentation is applied to grayscaled and CLAHE filtered images. This gives a dataset that is four times the original dataset. Note that each copy of training set image is augmented to produce 4 images and I do not selectively choose certain image categories to augment. Such datasets may represent natural distributions and thus it may not be a good idea to augment unevenly. This is because Augmentation should increase the robustness of the model when seeing unseen images.
 
@@ -127,6 +124,8 @@ My final model consisted of the following layers:
 | Fully connected		| outputs n_classes (= 43)      									|
 | Softmax				|       									|
 
+The overall achitecture is presented in the figure below.
+![architecture][image15]
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
@@ -169,8 +168,7 @@ My journey to submission was long and I spent a lot of time experimenting with h
 
 Here are six German traffic signs that I found on the web:
 
-![11][image7] ![22][image8] ![23][image9] 
-![25][image10] ![28][image11] ![3][image12]
+![internet_images][image7]
 
 Other than intentionally picking images that cover the majority of the height and width of the image, I tried to be impartial in selecting the image. The reason I did this was the training data set has images in which traffic sign occupies the majority of the pixel space. I resized the image to 32x32 to fit the modelling. Most images have watermark on them and some of them have varied backgrounds.
 
@@ -205,8 +203,8 @@ For most of the images, the softmax probabilities of the correct labels are high
 | 0.478				    | Children crossing      							|
 | 0.426				    | Speed limit (60km/h)     							|
 
-![softmax1][image13] ![softmax2][image14] ![softmax3][image15] 
-![softmax4][image16] ![softmax5][image17] ![softmax6][image18]
+![softmax1][image8] ![softmax2][image9] ![softmax3][image10] 
+![softmax4][image11] ![softmax5][image12] ![softmax6][image13]
 
 
 [1]. http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
