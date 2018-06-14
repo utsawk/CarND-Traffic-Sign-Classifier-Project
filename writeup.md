@@ -31,7 +31,7 @@ The goals / steps of this project are the following:
 [image12]: ./writeup_images/softmax5.png "Softmax 5"
 [image13]: ./writeup_images/softmax6.png "Softmax 6"
 [image14]: ./writeup_images/augmentation.png "Augmentation"
-[image15]: ./writeup_images/arch.png "Architecture"
+[image15]: ./writeup_images/arch.jpg "Architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
